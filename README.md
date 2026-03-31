@@ -45,7 +45,7 @@ We provide pretrained models for different scenarios:
 | LingBot-Depth-DC | [robbyant/lingbot-depth-postrain-dc-vitl14](https://huggingface.co/robbyant/lingbot-depth-postrain-dc-vitl14/tree/main) | [robbyant/lingbot-depth-postrain-dc-vitl14](https://www.modelscope.cn/models/Robbyant/lingbot-depth-postrain-dc-vitl14)| Optimized for sparse depth completion |
 
 ### Data Release
-- The curated 3M RGB-D dataset is now available at https://huggingface.co/datasets/robbyant/mdm_depth
+- The curated 3M RGB-D dataset is now available at [Hugging Face](https://huggingface.co/datasets/robbyant/mdm_depth) and [ModelScope](https://modelscope.cn/datasets/Robbyant/LingBot-Depth-Dataset)
 - Dataset overview:
 
 | Name | Description | Samples |
