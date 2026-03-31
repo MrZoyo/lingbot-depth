@@ -44,9 +44,17 @@ We provide pretrained models for different scenarios:
 | LingBot-Depth-v0.1 | [robbyant/lingbot-depth-pretrain-vitl-14](https://huggingface.co/robbyant/lingbot-depth-pretrain-vitl-14/tree/main) | [robbyant/lingbot-depth-pretrain-vitl-14](https://www.modelscope.cn/models/Robbyant/lingbot-depth-pretrain-vitl-14)| General-purpose depth refinement |
 | LingBot-Depth-DC | [robbyant/lingbot-depth-postrain-dc-vitl14](https://huggingface.co/robbyant/lingbot-depth-postrain-dc-vitl14/tree/main) | [robbyant/lingbot-depth-postrain-dc-vitl14](https://www.modelscope.cn/models/Robbyant/lingbot-depth-postrain-dc-vitl14)| Optimized for sparse depth completion |
 
-### Data Release (Coming Soon)
-- The curated 3M RGB-D dataset will be released upon completion of the necessary licensing and approval procedures. 
-- Expected release: **mid-March 2026**.
+### Data Release
+- The curated 3M RGB-D dataset is now available at https://huggingface.co/datasets/robbyant/mdm_depth
+- Dataset overview:
+
+| Name | Description | Samples |
+|------|-------------|--------:|
+| **RobbyReal** | Real-world indoor scenes captured with multiple RGB-D cameras | 1,400,000 |
+| **RobbyVla** | Real-world data collected during VLA (Vision-Language-Action) robot manipulation tasks | 580,960 |
+| **RobbySim** | Simulated data rendered from two camera viewpoints | 999,264 |
+| **RobbySimVal** | Validation split of simulated data | 38,976 |
+| **Total** | | **3,019,200** |
 
 ## Installation
 
