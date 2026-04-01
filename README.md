@@ -179,6 +179,7 @@ data_root/
 - Multiple workers per GPU for higher throughput
 - Automatic resume — skips already-processed frames
 - Configurable depth scale (default 1000, i.e. millimeters → meters)
+- Invalid values (inf, nan) are sanitized to 0.0 in output
 
 ## Method
 

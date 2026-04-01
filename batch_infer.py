@@ -104,8 +104,9 @@ def worker_fn(physical_gpu_id: int, task_queue: Queue, model_path: str, depth_sc
             intrinsics = torch.tensor(intr, dtype=torch.float32, device=device).unsqueeze(0)
 
             output = model.infer(image, depth_in=depth, intrinsics=intrinsics)
-            depth_refined = output["depth"].squeeze(0).cpu().numpy()
-            np.save(str(out_path), depth_refined.astype(np.float32))
+            depth_refined = output["depth"].squeeze(0).cpu().numpy().astype(np.float32)
+            depth_refined = np.nan_to_num(depth_refined, nan=0.0, posinf=0.0, neginf=0.0)
+            np.save(str(out_path), depth_refined)
 
         elapsed = time.time() - t0
         fps = num_frames / elapsed if elapsed > 0 else 0
