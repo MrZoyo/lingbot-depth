@@ -1,5 +1,6 @@
 # LingBot-Depth: Masked Depth Modeling for Spatial Perception
 
+> **Fork additions:** Added `batch_infer.py` — a multi-GPU, multi-worker batch inference script for processing large-scale RGB-D datasets. Supports automatic task discovery, configurable workers per GPU via `CUDA_VISIBLE_DEVICES` isolation, and resume from interruption (skips already-processed frames). See [Batch Inference](#batch-inference) below.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
@@ -144,6 +145,40 @@ result/
 ```
 
 **Available examples:** 8 example scenes (0-7) included in `examples/` directory.
+
+## Batch Inference
+
+Process large-scale RGB-D datasets across multiple GPUs with multiple workers per GPU:
+
+```bash
+# Use all available GPUs, 4 workers each (default)
+python batch_infer.py --data_root /path/to/data
+
+# Customize GPU count and workers
+python batch_infer.py --data_root /path/to/data --num_gpus 8 --num_workers_per_gpu 4
+
+# Use a local checkpoint
+python batch_infer.py --model_path checkpoints/lingbot-depth-v0.5/model.pt
+```
+
+**Expected data layout:**
+```
+data_root/
+├── recording_001/
+│   ├── rgb/varied_camera_1/00000.jpg, 00001.jpg, ...
+│   ├── depth/varied_camera_1/00000.npy, 00001.npy, ...   # uint16, millimeters
+│   └── trajectory_valid.h5                                 # contains camera intrinsics
+├── recording_002/
+│   └── ...
+```
+
+**Output:** refined depth saved as `depth_lingbot/<camera>/<frame>.npy` (float32, meters) in each recording directory.
+
+**Features:**
+- Multi-GPU parallel inference with per-GPU `CUDA_VISIBLE_DEVICES` isolation
+- Multiple workers per GPU for higher throughput
+- Automatic resume — skips already-processed frames
+- Configurable depth scale (default 1000, i.e. millimeters → meters)
 
 ## Method
 
